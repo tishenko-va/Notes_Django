@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить заметку</title>
+</head>
+<body>
+    <h1>Удалить заметку "{{ note.title }}"?</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'note_list' %}">Отмена</a>
+</body>
+</html>

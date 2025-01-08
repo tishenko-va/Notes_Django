@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать/Редактировать заметку</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Редактировать{% else %}Создать{% endif %} заметку</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{% url 'note_list' %}">Назад к списку</a>
+</body>
+</html>

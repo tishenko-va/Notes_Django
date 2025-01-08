@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заметок</title>
+</head>
+<body>
+    <h1>Список заметок</h1>
+    <a href="{% url 'note_create' %}">Добавить новую заметку</a>
+    <ul>
+       {% if notes %}
+           {% for note in notes %}
+               <li>
+                   <strong>{{ note.title }}</strong> - {{ note.content }}, <br>
+                   {{ note.created_at|date:"d.m.Y" }}<br>
+                   <a href="{% url 'note_update' note.pk %}">Редактировать</a><br>
+                   <a href="{% url 'note_delete' note.pk %}">Удалить</a><br>
+                   <br>
+               </li>
+           {% endfor %}
+       {% else %}
+           <li>Нет заметок.</li>
+       {% endif %}
+   </ul>
+
+   <!-- Пагинация -->
+   <div class="pagination">
+       <span class="step-links">
+           {% if notes.has_previous %}
+               <a href="?page=1">&laquo; первая</a>
+               <a href="?page={{ notes.previous_page_number }}">предыдущая</a>
+           {% endif %}
+
+           <span class="current">
+               Страница {{ notes.number }} из {{ notes.paginator.num_pages }}.
+           </span>
+
+           {% if notes.has_next %}
+               <a href="?page={{ notes.next_page_number }}">следующая</a>
+               <a href="?page={{ notes.paginator.num_pages }}">последняя &raquo;</a>
+           {% endif %}
+       </span>
+   </div>
+
+   <br><br>
+   <form action="{% url 'logout' %}" method="post" style="display:inline;">
+       {% csrf_token %}
+       <button type="submit">Выйти</button>
+   </form>
+</body>
+</html>
