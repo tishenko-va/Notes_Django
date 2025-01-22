@@ -1,20 +1,23 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
 </head>
 <body>
-<h2>Вход</h2>
-<form method="post">
-    {% csrf_token %}
-    <label for="username">Имя пользователя:</label>
-    <input type="text" name="username" required>
+    <h1>Вход в систему</h1>
 
-    <label for="password">Пароль:</label>
-    <input type="password" name="password" required>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
 
-    <button type="submit">Войти</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+
+    <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a></p>
 </body>
 </html>
