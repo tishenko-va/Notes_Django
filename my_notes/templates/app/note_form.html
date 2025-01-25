@@ -1,8 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Создать/Редактировать заметку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e1f5fe; /* Голубой фон */
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Высота экрана */
+        }
+
+        h1 {
+            color: #0277bd; /* Цвет заголовка */
+            text-align: center; /* Центрируем заголовок */
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 300px; /* Ширина формы */
+            text-align: center; /* Центрируем текст в форме */
+        }
+
+        button {
+            background-color: #0288d1; /* Цвет кнопки */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Размер шрифта кнопки */
+            margin-top: 10px; /* Отступ сверху */
+        }
+
+        button:hover {
+            background-color: #0277bd; /* Темнее при наведении */
+        }
+
+        a {
+            display: inline-block; /* Чтобы ссылка выглядела как кнопка */
+            margin-top: 15px; /* Отступ сверху */
+            color: #1976d2; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+    </style>
 </head>
 <body>
     <h1>{% if form.instance.pk %}Редактировать{% else %}Создать{% endif %} заметку</h1>
@@ -14,3 +67,20 @@
     <a href="{% url 'note_list' %}">Назад к списку</a>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Создать/Редактировать заметку</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>{% if form.instance.pk %}Редактировать{% else %}Создать{% endif %} заметку</h1>-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <button type="submit">Сохранить</button>-->
+<!--    </form>-->
+<!--    <a href="{% url 'note_list' %}">Назад к списку</a>-->
+<!--</body>-->
+<!--</html>-->

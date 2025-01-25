@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Голубой фон */
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #00796b; /* Цвет заголовка */
+            text-align: center; /* Центрируем заголовок */
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Ширина формы */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Чтобы ширина учитывала отступы */
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #00796b; /* Цвет рамки при фокусе */
+            outline: none; /* Убираем стандартный контур */
+        }
+
+        button {
+            background-color: #00796b; /* Цвет кнопки */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Кнопка занимает всю ширину формы */
+        }
+
+        button:hover {
+            background-color: #004d40; /* Цвет кнопки при наведении */
+        }
+
+        p {
+            text-align: center; /* Центрируем текст */
+        }
+
+        .error {
+            color: red; /* Цвет ошибки */
+            text-align: center; /* Центрируем текст ошибки */
+        }
+    </style>
+</head>
+<body>
+    <h1>Вход в систему</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+
+    <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a></p>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="ru">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Вход</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Вход в систему</h1>-->
+
+<!--    {% if error %}-->
+<!--        <p style="color: red;">{{ error }}</p>-->
+<!--    {% endif %}-->
+
+<!--    <form method="post">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <button type="submit">Войти</button>-->
+<!--    </form>-->
+
+<!--    <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a></p>-->
+<!--</body>-->
+<!--</html>-->

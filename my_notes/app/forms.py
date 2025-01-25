@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note, User
+from .models import Note, CustomUser
 from django import forms
 
 

@@ -1,8 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Удалить заметку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4c3; /* Светлый фон */
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Высота экрана */
+        }
+
+        h1 {
+            color: #d32f2f; /* Цвет заголовка */
+            text-align: center; /* Центрируем заголовок */
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Центрируем текст в форме */
+        }
+
+        button {
+            background-color: #d32f2f; /* Красный цвет кнопки */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Размер шрифта кнопки */
+        }
+
+        button:hover {
+            background-color: #b71c1c; /* Темнее при наведении */
+        }
+
+        a {
+            display: inline-block; /* Чтобы ссылка выглядела как кнопка */
+            margin-top: 15px; /* Отступ сверху */
+            color: #1976d2; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+    </style>
 </head>
 <body>
     <h1>Удалить заметку "{{ note.title }}"?</h1>
@@ -13,3 +64,19 @@
     <a href="{% url 'note_list' %}">Отмена</a>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Удалить заметку</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Удалить заметку "{{ note.title }}"?</h1>-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <button type="submit">Удалить</button>-->
+<!--    </form>-->
+<!--    <a href="{% url 'note_list' %}">Отмена</a>-->
+<!--</body>-->
+<!--</html>-->

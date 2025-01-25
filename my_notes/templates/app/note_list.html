@@ -2,24 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список заметок</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: #87ceeb; /* Полностью голубой фон */
+    margin: 0;
+    padding: 20px;
+}
+
+        h1 {
+            color: #333;
+            text-align: center; /* Центрируем заголовок */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .note-list {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px; /* Ограничиваем ширину списка заметок */
+            margin: 0 auto; /* Центрируем список */
+        }
+
+        .note-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .note-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-actions {
+            margin-top: 10px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination .current {
+            margin: 0 10px;
+        }
+
+        .logout-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block; /* Отображаем кнопку на отдельной строке */
+            margin: 20px auto; /* Центрируем кнопку */
+        }
+
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
     <h1>Список заметок</h1>
     <a href="{% url 'note_create' %}">Добавить новую заметку</a>
-    <ul>
+
+    <ul class="note-list">
        {% if notes %}
            {% for note in notes %}
-               <li>
-                   <strong>{{ note.title }}</strong> - {{ note.content }}, <br>
-                   {{ note.created_at|date:"d.m.Y" }}<br>
-                   <a href="{% url 'note_update' note.pk %}">Редактировать</a><br>
-                   <a href="{% url 'note_delete' note.pk %}">Удалить</a><br>
-                   <br>
+               <li class="note-item">
+                   <strong>{{ note.title }}</strong> - {{ note.content }}<br>
+                   <small>{{ note.created_at|date:"d.m.Y" }}</small><br>
+                   <div class="note-actions">
+                       <a href="{% url 'note_update' note.pk %}">Редактировать</a> |
+                       <a href="{% url 'note_delete' note.pk %}">Удалить</a>
+                   </div>
                </li>
            {% endfor %}
        {% else %}
-           <li>Нет заметок.</li>
+           <li class="note-item">Нет заметок.</li>
        {% endif %}
    </ul>
 
@@ -45,7 +132,58 @@
    <br><br>
    <form action="{% url 'logout' %}" method="post" style="display:inline;">
        {% csrf_token %}
-       <button type="submit">Выйти</button>
+       <button type="submit" class="logout-button">Выйти</button>
    </form>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Список заметок</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Список заметок</h1>-->
+<!--    <a href="{% url 'note_create' %}">Добавить новую заметку</a>-->
+<!--    <ul>-->
+<!--       {% if notes %}-->
+<!--           {% for note in notes %}-->
+<!--               <li>-->
+<!--                   <strong>{{ note.title }}</strong> - {{ note.content }}, <br>-->
+<!--                   {{ note.created_at|date:"d.m.Y" }}<br>-->
+<!--                   <a href="{% url 'note_update' note.pk %}">Редактировать</a><br>-->
+<!--                   <a href="{% url 'note_delete' note.pk %}">Удалить</a><br>-->
+<!--                   <br>-->
+<!--               </li>-->
+<!--           {% endfor %}-->
+<!--       {% else %}-->
+<!--           <li>Нет заметок.</li>-->
+<!--       {% endif %}-->
+<!--   </ul>-->
+<!--    -->
+<!--   <div class="pagination">-->
+<!--       <span class="step-links">-->
+<!--           {% if notes.has_previous %}-->
+<!--               <a href="?page=1">&laquo; первая</a>-->
+<!--               <a href="?page={{ notes.previous_page_number }}">предыдущая</a>-->
+<!--           {% endif %}-->
+
+<!--           <span class="current">-->
+<!--               Страница {{ notes.number }} из {{ notes.paginator.num_pages }}.-->
+<!--           </span>-->
+
+<!--           {% if notes.has_next %}-->
+<!--               <a href="?page={{ notes.next_page_number }}">следующая</a>-->
+<!--               <a href="?page={{ notes.paginator.num_pages }}">последняя &raquo;</a>-->
+<!--           {% endif %}-->
+<!--       </span>-->
+<!--   </div>-->
+
+<!--   <br><br>-->
+<!--   <form action="{% url 'logout' %}" method="post" style="display:inline;">-->
+<!--       {% csrf_token %}-->
+<!--       <button type="submit">Выйти</button>-->
+<!--   </form>-->
+<!--</body>-->
+<!--</html>-->
