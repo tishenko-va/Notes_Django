@@ -7,12 +7,18 @@
 ▎Функциональность
 
 • Регистрация пользователей: Пользователи могут создавать учетные записи, вводя имя пользователя и пароль.
+![alt text](https://github.com/tishenko-va/Notes_Django/blob/master/register.png)
 
 • Вход в систему: Аутентификация пользователей через форму входа.
+![alt text](https://github.com/tishenko-va/Notes_Django/blob/master/login.png)
 
 • Управление заметками: Пользователи могут создавать, редактировать и удалять свои заметки.
+![alt text](https://github.com/tishenko-va/Notes_Django/blob/master/create.png)
+![alt text](https://github.com/tishenko-va/Notes_Django/blob/master/delite.png)
 
 • Просмотр списка заметок: Заметки отображаются в виде списка с пагинацией.
+![alt text](https://github.com/tishenko-va/Notes_Django/blob/master/note_list.png)
+
 
 ▎Используемые технологии
 
